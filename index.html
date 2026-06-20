@@ -161,10 +161,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; b
      ⚙️  CONFIGURAÇÃO
      ══════════════════════════════════════════════ -->
 <script>
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx9-w3O2KQl26EDnq_bHhRR7uCuiHR0ldtkjFN8eccI7A3TCULdJ_PnqL-ixYQ58Ucq/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwRx6PIP6lCYh5vaXiUrjuBFbgO2Kbd_X_Ut1xlrdQrXBJSs0DILY6MhzJc_5f6eICR/exec";
 
 const PARTICIPANTES = [
-  "Ananias", "Carlão", "Hpeter",
+  "Ananias2", "Carlão", "Hpeter",
   // adicione os apelidos aqui
 ];
 
@@ -602,6 +602,9 @@ async function enviarPalpites(){
     document.getElementById("tela-sucesso").style.display="flex";
     document.getElementById("sucesso-sub").textContent=
       `Palpite de ${apelidoAtual} registrado com sucesso. Baixe a imagem para guardar ou compartilhar!`;
+    // 🔴 ADICIONE ESTA LINHA PARA ESCONDER A AMPULHETA
+    document.getElementById("toast").classList.remove("show");
+
     gerarCanvas();
   }catch(err){
     mostrarToast("❌ Erro ao enviar. Tente novamente.","erro");
