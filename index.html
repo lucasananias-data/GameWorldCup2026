@@ -161,10 +161,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; b
      ⚙️  CONFIGURAÇÃO
      ══════════════════════════════════════════════ -->
 <script>
-const APPS_SCRIPT_URL = "COLE_A_URL_DO_WEB_APP_AQUI";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx9-w3O2KQl26EDnq_bHhRR7uCuiHR0ldtkjFN8eccI7A3TCULdJ_PnqL-ixYQ58Ucq/exec";
 
 const PARTICIPANTES = [
-  "João", "Maria", "Pedro",
+  "Ananias", "Maria", "Pedro",
   // adicione os apelidos aqui
 ];
 
@@ -427,13 +427,12 @@ function buildCard(fi,ji){
       <span class="time-flag">${flag(nome)}</span>
       <span class="${nomeClass}">${nome||"—"}</span>
       ${badgeHtml}
-      <input class="gols-input" type="text" inputmode="numeric" pattern="[0-9]*"
+      <input class="gols-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2"
         id="${ti===0?"g1":"g2"}-${fi}-${ji}"
         value="${gCur}"
         placeholder="—"
         ${!nome?"disabled":""}
-        oninput="this.value=this.value.replace(/[^0-9]/g,'')"
-        onchange="onGolsChange(${fi},${ji},${ti})">`;
+        oninput="this.value=this.value.replace(/[^0-9]/g,''); onGolsChange(${fi},${ji},${ti})">`;
     card.appendChild(row);
   });
 
@@ -455,6 +454,15 @@ function buildCard(fi,ji){
 
 function renderBracket(){
   salvarInputs();
+
+  // Preserva qual input estava em foco (e a posição do cursor) antes de recriar o DOM
+  const ativo = document.activeElement;
+  let focoId = null, cursorPos = null;
+  if(ativo && ativo.classList && ativo.classList.contains("gols-input")){
+    focoId = ativo.id;
+    cursorPos = ativo.selectionStart;
+  }
+
   const wrap=document.getElementById("bracket");
   wrap.innerHTML="";
 
@@ -510,6 +518,15 @@ function renderBracket(){
   finalCol.appendChild(secTerceiro);
 
   wrap.appendChild(finalCol);
+
+  // Restaura o foco e a posição do cursor no input que estava sendo digitado
+  if(focoId){
+    const novoEl = document.getElementById(focoId);
+    if(novoEl){
+      novoEl.focus();
+      if(cursorPos !== null) novoEl.setSelectionRange(cursorPos, cursorPos);
+    }
+  }
 }
 
 // ══════════════════════════════════════════
