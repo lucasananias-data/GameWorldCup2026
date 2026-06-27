@@ -581,6 +581,12 @@ async function enviar() {
     });
     const txt = await res.text();
     if (!txt.includes("OK")) throw new Error(txt);
+
+    const selApelido = document.getElementById("sel-apelido");
+    if (selApelido && selApelido.selectedIndex !== -1) {
+      selApelido.remove(selApelido.selectedIndex);
+    }
+    
     // Remova o toast de carregando e mostre o de sucesso
     mostrarToast("✅ Palpites enviados com sucesso!", "ok");
     document.getElementById("tela-palpites").style.display = "none";
