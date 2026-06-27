@@ -588,7 +588,14 @@ async function enviar() {
     document.getElementById("suc-sub").textContent =
       `Palpite de ${apelidoAtual} para ${FASE_ATUAL} registrado com sucesso! Boa sorte!`;
   } catch(err) {
-    async function baixarImagem() {
+    
+    mostrarToast("❌ Erro ao enviar. Verifique sua conexão e tente novamente.", "erro");
+    btn.disabled = false; btn.textContent = "Enviar →";
+    console.error(err);
+  }
+}
+
+async function baixarImagem() {
   const btn = document.getElementById("btn-baixar");
   const textoOriginal = btn.innerHTML;
   btn.innerHTML = "⏳ Gerando recibo...";
@@ -626,11 +633,6 @@ async function enviar() {
   } finally {
     btn.innerHTML = textoOriginal;
     btn.disabled = false;
-  }
-}
-    mostrarToast("❌ Erro ao enviar. Verifique sua conexão e tente novamente.", "erro");
-    btn.disabled = false; btn.textContent = "Enviar →";
-    console.error(err);
   }
 }
 
