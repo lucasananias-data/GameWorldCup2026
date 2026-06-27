@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>⚽ Bolão Copa 2026 — Mata-Mata</title>
+<title>⚽ Bolão Copa 2026</title>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -13,143 +13,155 @@
   --amarelo:    #F9E547;
   --amar-dark:  #B7950B;
   --fundo:      #0E1016;
-  --fundo-card: #181C28;
-  --fundo-2:    #1E2235;
+  --card:       #181C28;
+  --card2:      #1E2235;
   --borda:      #2A2F48;
   --texto:      #E8EAF0;
-  --texto-dim:  #5A6280;
+  --dim:        #5A6280;
   --venc-bg:    #0A2E1A;
   --perd-bg:    #141420;
   --perd-tx:    #353550;
-  --pena-bg:    #1C1800;
   --radius:     10px;
 }
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--fundo); color: var(--texto); min-height: 100vh; }
+body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+       background:var(--fundo); color:var(--texto); min-height:100vh; }
 
 /* ══ TELA INÍCIO ══ */
-#tela-inicio { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:2rem 1rem; gap:2rem; }
-.inicio-logo   { font-size:2.5rem; text-align:center; }
-.inicio-titulo { font-size:1.5rem; font-weight:700; color:var(--amarelo); text-align:center; }
-.inicio-sub    { font-size:.9rem; color:var(--texto-dim); text-align:center; margin-top:.25rem; }
-.inicio-card   { background:var(--fundo-card); border:1px solid var(--borda); border-radius:16px; padding:1.75rem; width:100%; max-width:560px; display:flex; flex-direction:column; gap:1.5rem; }
-.field-label   { font-size:.72rem; font-weight:600; text-transform:uppercase; letter-spacing:.07em; color:var(--texto-dim); margin-bottom:.45rem; display:block; }
-#sel-inicio {
-  background:var(--fundo-2); border:1.5px solid var(--borda); border-radius:var(--radius);
-  color:var(--texto); font-size:1rem; padding:.7rem 2.5rem .7rem 1rem; cursor:pointer; width:100%;
-  appearance:none; -webkit-appearance:none;
+#tela-inicio { min-height:100vh; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; padding:2rem 1rem; gap:1.75rem; }
+.logo   { font-size:2.2rem; text-align:center; }
+.titulo { font-size:1.4rem; font-weight:700; color:var(--amarelo); text-align:center; }
+.fase-badge { display:inline-block; background:var(--verde); color:#fff;
+  font-size:.8rem; font-weight:700; padding:.3rem .9rem;
+  border-radius:99px; margin-top:.4rem; }
+.card-inicio { background:var(--card); border:1px solid var(--borda); border-radius:16px;
+  padding:1.75rem; width:100%; max-width:520px; display:flex; flex-direction:column; gap:1.5rem; }
+.field-label { font-size:.72rem; font-weight:600; text-transform:uppercase;
+  letter-spacing:.07em; color:var(--dim); margin-bottom:.45rem; display:block; }
+select { background:var(--card2); border:1.5px solid var(--borda); border-radius:var(--radius);
+  color:var(--texto); font-size:.95rem; padding:.65rem 2.5rem .65rem 1rem;
+  cursor:pointer; width:100%; appearance:none; -webkit-appearance:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath fill='%236B7280' d='M7 9L2 4h10z'/%3E%3C/svg%3E");
-  background-repeat:no-repeat; background-position:right .9rem center; transition:border-color .2s;
-}
-#sel-inicio:focus { outline:none; border-color:var(--verde-glow); }
-.instrucao-card { background:var(--fundo-2); border-radius:var(--radius); padding:1.1rem 1.25rem; display:flex; flex-direction:column; gap:.8rem; }
-.instrucao-item { display:flex; gap:.75rem; align-items:flex-start; font-size:.83rem; color:var(--texto); line-height:1.5; }
-.instrucao-icon { font-size:1rem; flex-shrink:0; }
-.pts-grid { display:grid; grid-template-columns:1fr 1fr; gap:.45rem; }
-.pts-item { background:var(--fundo); border:1px solid var(--borda); border-radius:8px; padding:.55rem .7rem; display:flex; align-items:center; justify-content:space-between; gap:.5rem; }
-.pts-fase { font-size:.77rem; color:var(--texto-dim); }
-.pts-vals { display:flex; flex-direction:column; align-items:flex-end; gap:.05rem; }
-.pts-venc { font-size:.68rem; color:var(--verde-glow); font-weight:600; }
-.pts-exat { font-size:.68rem; color:var(--amarelo); font-weight:600; }
-.btn-comecar { background:var(--verde); color:#fff; border:none; border-radius:var(--radius); padding:.8rem; font-size:1rem; font-weight:700; cursor:pointer; transition:background .2s; width:100%; }
-.btn-comecar:hover { background:var(--verde-mid); }
-.btn-comecar:disabled { background:var(--texto-dim); cursor:not-allowed; }
+  background-repeat:no-repeat; background-position:right .85rem center; transition:border-color .2s; }
+select:focus { outline:none; border-color:var(--verde-glow); }
 
-/* ══ TELA BRACKET ══ */
-#tela-bracket { display:none; flex-direction:column; min-height:100vh; }
-.header { background:linear-gradient(135deg,#081510,#122018,#081510); border-bottom:1px solid #1A4030; padding:.7rem 1.25rem; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; gap:.75rem; flex-wrap:wrap; }
-.header-left { display:flex; align-items:center; gap:.85rem; }
-.header-logo { font-size:.88rem; font-weight:700; color:var(--amarelo); white-space:nowrap; }
-.header-user { font-size:.82rem; color:var(--verde-glow); font-weight:600; }
-.progress-wrap { display:flex; align-items:center; gap:.5rem; }
-.progress-label { font-size:.7rem; color:var(--texto-dim); white-space:nowrap; }
-.progress-bar { width:88px; height:5px; background:var(--borda); border-radius:99px; overflow:hidden; }
-.progress-fill { height:100%; background:var(--verde-glow); border-radius:99px; transition:width .4s; }
-.btn-enviar { background:var(--verde); color:#fff; border:none; border-radius:8px; padding:.42rem 1rem; font-size:.85rem; font-weight:600; cursor:pointer; transition:background .2s; white-space:nowrap; }
+/* Pontuação */
+.pts-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:.4rem; }
+.pts-item { background:var(--fundo); border:1px solid var(--borda); border-radius:8px;
+  padding:.55rem .65rem; display:flex; flex-direction:column; gap:.15rem; align-items:center; text-align:center; }
+.pts-val  { font-size:1.15rem; font-weight:800; }
+.pts-desc { font-size:.64rem; color:var(--dim); line-height:1.3; }
+.verde  { color:var(--verde-glow); }
+.amarelo{ color:var(--amarelo); }
+.azul   { color:#5DADE2; }
+
+.instr-card { background:var(--card2); border-radius:var(--radius);
+  padding:1rem 1.1rem; display:flex; flex-direction:column; gap:.7rem; }
+.instr-item { display:flex; gap:.7rem; align-items:flex-start;
+  font-size:.82rem; color:var(--texto); line-height:1.5; }
+.instr-icon { font-size:.95rem; flex-shrink:0; }
+
+.btn-pri { background:var(--verde); color:#fff; border:none; border-radius:var(--radius);
+  padding:.78rem; font-size:.95rem; font-weight:700; cursor:pointer;
+  transition:background .2s; width:100%; }
+.btn-pri:hover { background:var(--verde-mid); }
+.btn-pri:disabled { background:var(--dim); cursor:not-allowed; }
+
+/* ══ TELA PALPITES ══ */
+#tela-palpites { display:none; flex-direction:column; min-height:100vh; }
+.header { background:linear-gradient(135deg,#081510,#122018,#081510);
+  border-bottom:1px solid #1A4030; padding:.7rem 1.25rem;
+  display:flex; align-items:center; justify-content:space-between;
+  position:sticky; top:0; z-index:100; gap:.75rem; flex-wrap:wrap; }
+.header-left { display:flex; align-items:center; gap:.75rem; }
+.header-logo  { font-size:.85rem; font-weight:700; color:var(--amarelo); }
+.header-fase  { font-size:.75rem; font-weight:600; color:var(--verde-glow); }
+.header-user  { font-size:.78rem; color:var(--dim); }
+.progress-wrap { display:flex; align-items:center; gap:.45rem; }
+.progress-label { font-size:.68rem; color:var(--dim); white-space:nowrap; }
+.progress-bar { width:80px; height:5px; background:var(--borda); border-radius:99px; overflow:hidden; }
+.progress-fill { height:100%; background:var(--verde-glow); border-radius:99px; transition:width .35s; }
+.btn-enviar { background:var(--verde); color:#fff; border:none; border-radius:8px;
+  padding:.4rem .95rem; font-size:.82rem; font-weight:600; cursor:pointer; white-space:nowrap; }
 .btn-enviar:hover { background:var(--verde-mid); }
-.btn-enviar:disabled { background:var(--texto-dim); cursor:not-allowed; }
+.btn-enviar:disabled { background:var(--dim); cursor:not-allowed; }
 
-/* ══ BRACKET — layout alinhado ao topo ══ */
-.bracket-outer { overflow-x:auto; padding:1.25rem 1.25rem 3rem; flex:1; }
-.bracket { display:flex; gap:12px; align-items:flex-start; min-width:max-content; }
+/* ══ LISTA DE JOGOS ══ */
+.jogos-wrap { padding:1.25rem; max-width:560px; margin:0 auto;
+  display:flex; flex-direction:column; gap:.85rem; }
+.jogo-card { background:var(--card); border:1px solid var(--borda);
+  border-radius:var(--radius); overflow:hidden; transition:border-color .2s; }
+.jogo-card.ok               { border-color:#1A4030; }
+.jogo-card.empate-pendente  { border-color:var(--amar-dark); }
+.jogo-header { display:flex; align-items:center; justify-content:space-between;
+  padding:.32rem .75rem; background:#121624; border-bottom:1px solid var(--borda); }
+.jogo-num    { font-size:.62rem; color:var(--dim); font-weight:600;
+  text-transform:uppercase; letter-spacing:.05em; }
+.jogo-status { font-size:.62rem; font-weight:600; }
+.jogo-status.ok    { color:var(--verde-glow); }
+.jogo-status.emp   { color:var(--amarelo); }
+.jogo-status.vazio { color:var(--dim); }
 
-.fase-col { display:flex; flex-direction:column; width:220px; flex-shrink:0; }
-.fase-header { font-size:.62rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--amarelo); padding-bottom:.55rem; white-space:nowrap; }
-.fase-jogos { display:flex; flex-direction:column; gap:8px; }
-
-/* ══ CARD ══ */
-.jogo { background:var(--fundo-card); border:1px solid var(--borda); border-radius:8px; overflow:hidden; transition:border-color .2s; }
-.jogo.completo        { border-color:#1A4030; }
-.jogo.empate-pendente { border-color:var(--amar-dark); }
-
-/* Time row: flag | nome | [input gols] */
-.time-row {
-  display:flex; align-items:center; gap:0;
-  border-bottom:1px solid var(--borda);
-  transition:background .15s;
-}
+/* Time row com input inline */
+.time-row { display:flex; align-items:center; border-bottom:1px solid var(--borda); min-height:40px; }
 .time-row:last-of-type { border-bottom:none; }
-.time-row.vencedor { background:var(--venc-bg); border-left:3px solid var(--verde-glow); }
-.time-row.perdedor { background:var(--perd-bg); }
-.time-row.vazio    { }
-
-.time-flag { font-size:.88rem; padding:.38rem .4rem .38rem .5rem; flex-shrink:0; line-height:1; }
-.time-nome {
-  font-size:.74rem; font-weight:500; flex:1; line-height:1.2;
-  padding:.38rem 0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-}
-.time-nome.perdedor-tx { color:var(--perd-tx); }
-.time-badge { font-size:.56rem; padding:1px 4px; border-radius:3px; font-weight:700; margin-right:.35rem; flex-shrink:0; }
-.badge-v { background:var(--verde); color:#fff; }
-.badge-p { background:var(--amar-dark); color:#fff; }
-
-/* Input de gols inline */
+.time-flag { font-size:.93rem; padding:.35rem .38rem .35rem .6rem; flex-shrink:0; }
+.time-nome { font-size:.79rem; font-weight:500; flex:1; padding:.35rem 0;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.time-nome.dim { color:var(--perd-tx); }
+.time-badge { font-size:.55rem; padding:2px 5px; border-radius:3px;
+  font-weight:700; margin-right:.38rem; flex-shrink:0; white-space:nowrap; }
+.badge-class { background:var(--verde); color:#fff; }
+.badge-elim  { background:#292932; color:var(--dim); }
 .gols-input {
-  font-family:"SF Mono","Fira Code",monospace;
-  font-size:.82rem; font-weight:700; color:var(--amarelo);
-  background:transparent; border:none; border-left:1px solid var(--borda);
-  width:32px; padding:.38rem .3rem; text-align:center;
-  -moz-appearance:textfield; flex-shrink:0;
-  transition:background .15s;
+  font-family:"SF Mono","Fira Code",monospace; font-size:.88rem; font-weight:700;
+  color:var(--amarelo); background:transparent; border:none;
+  border-left:1px solid var(--borda); width:36px; padding:.35rem .28rem;
+  text-align:center; -moz-appearance:textfield; flex-shrink:0;
 }
 .gols-input::-webkit-outer-spin-button,
 .gols-input::-webkit-inner-spin-button { -webkit-appearance:none; margin:0; }
 .gols-input:focus { outline:none; background:#1A2838; }
-.gols-input:disabled { color:var(--texto-dim); }
+.gols-input:disabled { color:var(--dim); cursor:not-allowed; }
 
-/* Pênaltis */
-.pen-row { background:var(--pena-bg); border-top:1px solid #5D4E00; padding:.28rem .5rem; display:flex; align-items:center; gap:.3rem; flex-wrap:wrap; }
-.pen-label { font-size:.58rem; color:#C4A800; width:100%; }
-.pen-btn { font-size:.64rem; padding:.16rem .45rem; border-radius:4px; border:1px solid #5D4E00; background:#2A2200; color:#C4A800; cursor:pointer; flex:1; white-space:nowrap; transition:background .15s; }
-.pen-btn:hover { background:#3A3000; }
-.pen-btn.ativo { background:var(--amar-dark); color:#fff; border-color:var(--amar-dark); }
+/* Empate / quem classificou */
+.empate-row { display:flex; align-items:center; gap:.5rem;
+  padding:.35rem .65rem; background:#1C1800; border-top:1px solid #5D4E00; }
+.empate-label { font-size:.63rem; color:#C4A800; flex-shrink:0; white-space:nowrap; }
+.empate-sel {
+  background:#2A2200; border:1px solid #5D4E00; border-radius:6px;
+  color:#E8D44D; font-size:.74rem; padding:.22rem .45rem; flex:1; min-width:0;
+  appearance:none; -webkit-appearance:none; cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%23C4A800' d='M5 7L1 3h8z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right .4rem center; padding-right:1.5rem;
+}
+.empate-sel:focus { outline:none; border-color:var(--amarelo); }
 
-/* Coluna Final + 3º lugar */
-.final-col { display:flex; flex-direction:column; width:220px; flex-shrink:0; gap:0; }
-.final-section { }
-.final-section + .final-section { margin-top:1.25rem; padding-top:1.25rem; border-top:1px dashed var(--borda); }
-.final-header { font-size:.62rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; padding-bottom:.55rem; }
-.final-header.col-final  { color:var(--amarelo); }
-.final-header.col-terceiro { color:#7A8090; }
-
-/* ══ MODAL ══ */
-.overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.8); z-index:200; align-items:center; justify-content:center; }
+/* Modal */
+.overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.8);
+  z-index:200; align-items:center; justify-content:center; }
 .overlay.show { display:flex; }
-.modal { background:var(--fundo-card); border:1px solid var(--borda); border-radius:14px; padding:1.75rem; max-width:420px; width:92%; }
+.modal { background:var(--card); border:1px solid var(--borda);
+  border-radius:14px; padding:1.75rem; max-width:420px; width:92%; }
 .modal h2 { font-size:1rem; color:var(--amarelo); margin-bottom:.5rem; }
-.modal-body { font-size:.82rem; color:var(--texto-dim); margin-bottom:1.25rem; line-height:1.65; max-height:38vh; overflow-y:auto; }
+.modal-body { font-size:.82rem; color:var(--dim); margin-bottom:1.25rem;
+  line-height:1.65; max-height:36vh; overflow-y:auto; }
 .modal-btns { display:flex; gap:.6rem; justify-content:flex-end; }
-.btn-sec { background:transparent; border:1px solid var(--borda); color:var(--texto-dim); border-radius:8px; padding:.42rem .9rem; cursor:pointer; font-size:.82rem; }
-.btn-pri { background:var(--verde); color:#fff; border:none; border-radius:8px; padding:.42rem 1.1rem; cursor:pointer; font-size:.82rem; font-weight:600; }
+.btn-sec { background:transparent; border:1px solid var(--borda); color:var(--dim);
+  border-radius:8px; padding:.42rem .9rem; cursor:pointer; font-size:.82rem; }
 
-/* ══ TELA SUCESSO ══ */
-#tela-sucesso { display:none; min-height:100vh; align-items:center; justify-content:center; flex-direction:column; gap:1.5rem; padding:2rem; text-align:center; }
-.sucesso-icon   { font-size:3.5rem; }
-.sucesso-titulo { font-size:1.4rem; font-weight:700; color:var(--verde-glow); }
-.sucesso-sub    { font-size:.88rem; color:var(--texto-dim); max-width:340px; line-height:1.6; }
-.btn-download   { background:var(--fundo-card); border:1.5px solid var(--verde-glow); color:var(--verde-glow); border-radius:var(--radius); padding:.7rem 1.5rem; font-size:.92rem; font-weight:600; cursor:pointer; transition:background .2s; }
-.btn-download:hover { background:var(--venc-bg); }
+/* Sucesso */
+#tela-sucesso { display:none; min-height:100vh; align-items:center;
+  justify-content:center; flex-direction:column; gap:1.5rem; padding:2rem; text-align:center; }
+.suc-icon   { font-size:3.5rem; }
+.suc-titulo { font-size:1.35rem; font-weight:700; color:var(--verde-glow); }
+.suc-sub    { font-size:.86rem; color:var(--dim); max-width:340px; line-height:1.6; }
 
-.toast { position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%) translateY(80px); background:var(--fundo-card); border:1px solid var(--verde); border-radius:8px; padding:.6rem 1.2rem; font-size:.84rem; transition:transform .3s; z-index:999; max-width:88vw; text-align:center; }
+.toast { position:fixed; bottom:1.5rem; left:50%;
+  transform:translateX(-50%) translateY(80px);
+  background:var(--card); border:1px solid var(--verde);
+  border-radius:8px; padding:.6rem 1.2rem; font-size:.84rem;
+  transition:transform .3s; z-index:999; max-width:88vw; text-align:center; }
 .toast.show { transform:translateX(-50%) translateY(0); }
 .toast.erro { border-color:#E74C3C; color:#E74C3C; }
 .toast.ok   { border-color:var(--verde-glow); color:var(--verde-glow); }
@@ -157,36 +169,47 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; b
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════════
-     ⚙️  CONFIGURAÇÃO
-     ══════════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════════════════════
+     ⚙️  CONFIGURAÇÃO — edite estas seções antes de publicar
+     ══════════════════════════════════════════════════════════ -->
 <script>
+// 1. URL do Web App (mesma para todas as fases)
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwRx6PIP6lCYh5vaXiUrjuBFbgO2Kbd_X_Ut1xlrdQrXBJSs0DILY6MhzJc_5f6eICR/exec";
 
+// 2. Participantes — mesmos apelidos da planilha
 const PARTICIPANTES = [
-  "Ananias2", "Carlão", "Hpeter",
-  // adicione os apelidos aqui
+  "Participante 1",
+  "Participante 2",
+  // adicione todos aqui
 ];
 
-const CONFRONTOS_16AVOS = [
-  ["Brasil",               "Marrocos"],
-  ["França",               "Senegal"],
-  ["Espanha",              "Uruguai"],
-  ["Portugal",             "Colômbia"],
-  ["Alemanha",             "Japão"],
-  ["Argentina",            "Equador"],
-  ["Holanda",              "Turquia"],
-  ["Inglaterra",           "Noruega"],
-  ["México",               "Suíça"],
-  ["Estados Unidos",       "Croácia"],
-  ["Bélgica",              "Austrália"],
-  ["Coreia do Sul",        "Suécia"],
-  ["Catar",                "Canadá"],
-  ["Egito",                "RD Congo"],
-  ["Irã",                  "Gana"],
-  ["Bósnia e Herzegovina", "República Tcheca"],
+// 3. Fase atual
+//    Valores válidos: "16-avos" | "Oitavas" | "Quartas" | "Semifinal" | "Final"
+//    Para Final, inclua também o jogo do 3º lugar como id:99 (convenção)
+const FASE_ATUAL = "16-avos";
+
+// 4. Jogos desta fase
+//    Para Final: adicione { id:99, t1:"...", t2:"..." } para o 3° lugar
+const JOGOS = [
+  { id:1,  t1:"Brasil",               t2:"Marrocos"           },
+  { id:2,  t1:"França",               t2:"Senegal"            },
+  { id:3,  t1:"Espanha",              t2:"Uruguai"            },
+  { id:4,  t1:"Portugal",             t2:"Colômbia"           },
+  { id:5,  t1:"Alemanha",             t2:"Japão"              },
+  { id:6,  t1:"Argentina",            t2:"Equador"            },
+  { id:7,  t1:"Holanda",              t2:"Turquia"            },
+  { id:8,  t1:"Inglaterra",           t2:"Noruega"            },
+  { id:9,  t1:"México",               t2:"Suíça"              },
+  { id:10, t1:"Estados Unidos",       t2:"Croácia"            },
+  { id:11, t1:"Bélgica",              t2:"Austrália"          },
+  { id:12, t1:"Coreia do Sul",        t2:"Suécia"             },
+  { id:13, t1:"Catar",                t2:"Canadá"             },
+  { id:14, t1:"Egito",                t2:"RD Congo"           },
+  { id:15, t1:"Irã",                  t2:"Gana"               },
+  { id:16, t1:"Bósnia e Herzegovina", t2:"República Tcheca"   },
 ];
 
+// 5. Bandeiras emoji por time
 const FLAGS = {
   "Brasil":"🇧🇷","Argentina":"🇦🇷","França":"🇫🇷","Alemanha":"🇩🇪",
   "Espanha":"🇪🇸","Inglaterra":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","Portugal":"🇵🇹","Holanda":"🇳🇱",
@@ -202,551 +225,373 @@ const FLAGS = {
   "Nova Zelândia":"🇳🇿","Panamá":"🇵🇦","Curaçao":"🇨🇼","África do Sul":"🇿🇦",
   "Tunísia":"🇹🇳",
 };
-
-const PONTOS = {
-  "16-avos":  {venc:3,  exato:6 },
-  "Oitavas":  {venc:5,  exato:10},
-  "Quartas":  {venc:8,  exato:15},
-  "Semifinal":{venc:12, exato:20},
-  "Final":    {venc:20, exato:30},
-  "3º Lugar": {venc:5,  exato:10},
-};
 </script>
+<!-- ══════════════════════════════════════════════════════════ -->
 
-<!-- ══ TELA 1: INÍCIO ══ -->
+<!-- TELA 1: INÍCIO -->
 <div id="tela-inicio">
   <div>
-    <div class="inicio-logo">⚽</div>
-    <div class="inicio-titulo">Bolão Copa 2026</div>
-    <div class="inicio-sub">Fase Mata-Mata — chaveamento completo</div>
+    <div class="logo">⚽</div>
+    <div class="titulo">Bolão Copa 2026 — Mata-Mata</div>
+    <div style="text-align:center;margin-top:.5rem">
+      <span class="fase-badge" id="badge-fase"></span>
+    </div>
   </div>
-  <div class="inicio-card">
+
+  <div class="card-inicio">
     <div>
-      <label class="field-label" for="sel-inicio">Seu apelido</label>
-      <select id="sel-inicio"><option value="" disabled selected>Carregando…</option></select>
+      <label class="field-label" for="sel-apelido">Seu apelido</label>
+      <select id="sel-apelido">
+        <option value="" disabled selected>Carregando…</option>
+      </select>
     </div>
-    <div class="instrucao-card">
+
+    <div>
+      <div class="field-label" style="margin-bottom:.55rem">Pontuação desta fase</div>
+      <div class="pts-grid">
+        <div class="pts-item">
+          <span class="pts-val amarelo">10</span>
+          <span class="pts-desc">pts placar exato<br>(incl. prorrogação)</span>
+        </div>
+        <div class="pts-item">
+          <span class="pts-val verde">3</span>
+          <span class="pts-desc">pts vencedor ou<br>empate certo</span>
+        </div>
+        <div class="pts-item">
+          <span class="pts-val azul">2</span>
+          <span class="pts-desc">pts por time<br>classificado</span>
+        </div>
+      </div>
+      <div style="font-size:.7rem;color:var(--dim);margin-top:.5rem;line-height:1.5;">
+        Placar exato acumula com vencedor →
+        <strong style="color:var(--amarelo)">13 pts máx. por jogo</strong> +
+        <strong style="color:#5DADE2">2 pts</strong> pelo classificado.
+      </div>
+    </div>
+
+    <div class="instr-card">
       <div class="field-label" style="margin-bottom:0">Como preencher</div>
-      <div class="instrucao-item"><span class="instrucao-icon">⌨️</span><span>Digite o placar diretamente na frente de cada time. O vencedor avança automaticamente.</span></div>
-      <div class="instrucao-item"><span class="instrucao-icon">🟡</span><span>Em caso de <strong>empate</strong> no placar, aparece a opção de escolher quem passa nos <strong>pênaltis</strong>.</span></div>
-      <div class="instrucao-item"><span class="instrucao-icon">⚠️</span><span>Preencha todo o chaveamento até a final. <strong>Não é possível editar após o envio.</strong></span></div>
+      <div class="instr-item"><span class="instr-icon">⌨️</span>
+        <span>Digite o placar final de cada jogo, considerando prorrogação se houver.</span></div>
+      <div class="instr-item"><span class="instr-icon">🟡</span>
+        <span>Se o placar for <strong>empate</strong>, aparece um campo para indicar quem classificou nos pênaltis.</span></div>
+      <div class="instr-item"><span class="instr-icon">🔒</span>
+        <span>Após enviar, <strong>não é possível editar.</strong></span></div>
     </div>
-    <div>
-      <div class="field-label" style="margin-bottom:.55rem">Pontuação por fase</div>
-      <div class="pts-grid" id="pts-grid"></div>
-    </div>
-    <button class="btn-comecar" id="btn-comecar" disabled onclick="iniciarBracket()">Começar a preencher →</button>
+
+    <button class="btn-pri" id="btn-comecar" disabled onclick="iniciarPalpites()">
+      Preencher palpites →
+    </button>
   </div>
 </div>
 
-<!-- ══ TELA 2: BRACKET ══ -->
-<div id="tela-bracket">
+<!-- TELA 2: PALPITES -->
+<div id="tela-palpites">
   <header class="header">
     <div class="header-left">
-      <span class="header-logo">⚽ Copa 2026 — Mata-Mata</span>
+      <span class="header-logo">⚽ Copa 2026</span>
+      <span class="header-fase" id="header-fase"></span>
       <span class="header-user" id="header-user"></span>
     </div>
     <div class="progress-wrap">
-      <span class="progress-label" id="progress-text">0 / 32</span>
+      <span class="progress-label" id="progress-txt">0 / 0</span>
       <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
     </div>
-    <button class="btn-enviar" id="btn-enviar" onclick="abrirConfirmacao()">Enviar →</button>
+    <button class="btn-enviar" id="btn-enviar" onclick="abrirModal()">Enviar →</button>
   </header>
-  <div class="bracket-outer">
-    <div class="bracket" id="bracket"></div>
-  </div>
+  <div class="jogos-wrap" id="jogos-wrap"></div>
 </div>
 
-<!-- ══ TELA 3: SUCESSO ══ -->
+<!-- TELA 3: SUCESSO -->
 <div id="tela-sucesso">
-  <div class="sucesso-icon">🎉</div>
-  <div class="sucesso-titulo">Palpites enviados!</div>
-  <div class="sucesso-sub" id="sucesso-sub"></div>
-  <button class="btn-download" onclick="baixarImagem()">⬇️ Baixar imagem do meu palpite</button>
-  <canvas id="canvas-preview" style="display:none"></canvas>
+  <div class="suc-icon">🎉</div>
+  <div class="suc-titulo">Palpites enviados!</div>
+  <div class="suc-sub" id="suc-sub"></div>
 </div>
 
+<!-- Modal -->
 <div class="overlay" id="overlay">
   <div class="modal">
     <h2>Confirmar envio?</h2>
     <div class="modal-body" id="modal-body"></div>
     <div class="modal-btns">
       <button class="btn-sec" onclick="fecharModal()">Voltar e revisar</button>
-      <button class="btn-pri" onclick="enviarPalpites()">Confirmar envio</button>
+      <button class="btn-pri" style="width:auto;padding:.42rem 1.1rem;font-size:.82rem" onclick="enviar()">
+        Confirmar envio
+      </button>
     </div>
   </div>
 </div>
+
 <div class="toast" id="toast"></div>
 
 <script>
 // ══════════════════════════════════════════
 //  ESTADO
 // ══════════════════════════════════════════
-const FASES = [
-  {label:"16-avos",   n:16},
-  {label:"Oitavas",   n:8 },
-  {label:"Quartas",   n:4 },
-  {label:"Semifinal", n:2 },
-  {label:"Final",     n:1 },
-];
-let state = [];
+const palpites = {};
+JOGOS.forEach(j => palpites[j.id] = { g1:"", g2:"", classificado:"" });
+
+const flag = t => t ? (FLAGS[t] || "🏳️") : "";
 let apelidoAtual = "";
-
-function initState(){
-  state[0] = CONFRONTOS_16AVOS.map(([t1,t2])=>({t1,t2,g1:"",g2:"",vencedor:null,penalti:null}));
-  for(let f=1;f<FASES.length;f++)
-    state[f]=Array(FASES[f].n).fill(null).map(()=>({t1:null,t2:null,g1:"",g2:"",vencedor:null,penalti:null}));
-  state[5]=[{t1:null,t2:null,g1:"",g2:"",vencedor:null,penalti:null}];
-}
-
-const flag = t => t?(FLAGS[t]||"🏳️"):"";
 
 // ══════════════════════════════════════════
 //  TELA INÍCIO
 // ══════════════════════════════════════════
-async function carregarParticipantes(){
-  const sel=document.getElementById("sel-inicio");
-  let disp=[...PARTICIPANTES];
-  try{
-    const r=await fetch(APPS_SCRIPT_URL+"?action=listarDisponiveis");
-    const txt=await r.text();
-    if(txt.trim().startsWith("[")) disp=JSON.parse(txt);
-  }catch(e){}
-  sel.innerHTML=`<option value="" disabled selected>Escolha seu apelido</option>`;
-  if(!disp.length){ sel.innerHTML+=`<option disabled>✅ Todos já enviaram</option>`; }
-  else { disp.forEach(p=>{ const o=document.createElement("option"); o.value=p; o.textContent=p; sel.appendChild(o); }); }
-  sel.onchange=()=>{ document.getElementById("btn-comecar").disabled=!sel.value; };
-}
+document.getElementById("badge-fase").textContent = FASE_ATUAL;
 
-function renderPtsGrid(){
-  const order=["16-avos","Oitavas","Quartas","Semifinal","Final","3º Lugar"];
-  document.getElementById("pts-grid").innerHTML=order.map(f=>`
-    <div class="pts-item">
-      <span class="pts-fase">${f}</span>
-      <div class="pts-vals">
-        <span class="pts-venc">Vencedor: ${PONTOS[f].venc} pts</span>
-        <span class="pts-exat">Placar exato: ${PONTOS[f].exato} pts</span>
-      </div>
-    </div>`).join("");
-}
+async function carregarParticipantes() {
+  const sel = document.getElementById("sel-apelido");
+  let disp = [...PARTICIPANTES];
+  try {
+    const r = await fetch(
+      `${APPS_SCRIPT_URL}?action=listarDisponiveis&fase=${encodeURIComponent(FASE_ATUAL)}`
+    );
+    const txt = await r.text();
+    if (txt.trim().startsWith("[")) disp = JSON.parse(txt);
+  } catch(e) { /* usa lista completa como fallback */ }
 
-function iniciarBracket(){
-  apelidoAtual=document.getElementById("sel-inicio").value;
-  if(!apelidoAtual) return;
-  document.getElementById("header-user").textContent="👤 "+apelidoAtual;
-  initState();
-  document.getElementById("tela-inicio").style.display="none";
-  document.getElementById("tela-bracket").style.display="flex";
-  renderBracket(); atualizarProgresso();
-}
-
-// ══════════════════════════════════════════
-//  LÓGICA DE PLACAR
-// ══════════════════════════════════════════
-function onGolsChange(fi,ji,ti){
-  const e1=document.getElementById(`g1-${fi}-${ji}`);
-  const e2=document.getElementById(`g2-${fi}-${ji}`);
-  if(e1) state[fi][ji].g1=e1.value;
-  if(e2) state[fi][ji].g2=e2.value;
-  processarPlacar(fi,ji);
-}
-
-function processarPlacar(fi,ji){
-  const j=state[fi][ji];
-  const g1=parseInt(j.g1), g2=parseInt(j.g2);
-  if(isNaN(g1)||isNaN(g2)||!j.t1||!j.t2){ j.vencedor=null; j.penalti=null; propagar(fi,ji,null); renderBracket(); return; }
-  if(g1>g2){      j.vencedor=j.t1; j.penalti=null; propagar(fi,ji,j.t1); }
-  else if(g2>g1){ j.vencedor=j.t2; j.penalti=null; propagar(fi,ji,j.t2); }
-  else {          j.vencedor=j.penalti||null; propagar(fi,ji,j.vencedor); }
-  renderBracket(); atualizarProgresso();
-}
-
-function escolherPenalti(fi,ji,time){
-  state[fi][ji].penalti=time; state[fi][ji].vencedor=time;
-  propagar(fi,ji,time); renderBracket(); atualizarProgresso();
-}
-
-function propagar(fi,ji,venc){
-  const pfi=fi+1;
-  if(pfi>=FASES.length) return;
-  const pji=Math.floor(ji/2), slot=ji%2;
-  if(!state[pfi]||!state[pfi][pji]) return;
-  const pj=state[pfi][pji];
-  const cur=slot===0?pj.t1:pj.t2;
-  if(cur!==venc){
-    if(slot===0) pj.t1=venc; else pj.t2=venc;
-    if(pj.vencedor===cur){ pj.vencedor=null; pj.penalti=null; propagar(pfi,pji,null); }
-  }
-  if(fi===3) atualizarTerceiro();
-}
-
-function atualizarTerceiro(){
-  const sf0=state[3]&&state[3][0], sf1=state[3]&&state[3][1];
-  const p0=sf0&&sf0.vencedor?(sf0.vencedor===sf0.t1?sf0.t2:sf0.t1):null;
-  const p1=sf1&&sf1.vencedor?(sf1.vencedor===sf1.t1?sf1.t2:sf1.t1):null;
-  if(!state[5]) state[5]=[{t1:null,t2:null,g1:"",g2:"",vencedor:null,penalti:null}];
-  const j3=state[5][0];
-  if(j3.t1!==p0){j3.t1=p0; if(j3.vencedor===j3.t1){j3.vencedor=null;j3.penalti=null;}}
-  if(j3.t2!==p1){j3.t2=p1; if(j3.vencedor===j3.t2){j3.vencedor=null;j3.penalti=null;}}
-}
-
-// ══════════════════════════════════════════
-//  RENDER — alinhado ao topo, gols inline
-// ══════════════════════════════════════════
-function salvarInputs(){
-  for(let f=0;f<=5;f++){
-    if(!state[f]) continue;
-    state[f].forEach((_,ji)=>{
-      const e1=document.getElementById(`g1-${f}-${ji}`);
-      const e2=document.getElementById(`g2-${f}-${ji}`);
-      if(e1) state[f][ji].g1=e1.value;
-      if(e2) state[f][ji].g2=e2.value;
+  sel.innerHTML = `<option value="" disabled selected>Escolha seu apelido</option>`;
+  if (!disp.length) {
+    sel.innerHTML += `<option disabled>✅ Todos já enviaram nesta fase</option>`;
+  } else {
+    disp.forEach(p => {
+      const o = document.createElement("option");
+      o.value = p; o.textContent = p; sel.appendChild(o);
     });
   }
+  sel.onchange = () => {
+    document.getElementById("btn-comecar").disabled = !sel.value;
+  };
 }
 
-function buildCard(fi,ji){
-  const j=state[fi][ji];
-  const eEmpate=j.g1!==""&&j.g2!==""&&!isNaN(parseInt(j.g1))&&parseInt(j.g1)===parseInt(j.g2);
-  const completo=j.vencedor&&j.g1!==""&&j.g2!=="";
-
-  const card=document.createElement("div");
-  card.className="jogo"+(completo?" completo":"")+(eEmpate&&!j.penalti?" empate-pendente":"");
-
-  [0,1].forEach(ti=>{
-    const nome=ti===0?j.t1:j.t2;
-    const gCur=ti===0?j.g1:j.g2;
-    const isV=j.vencedor===nome&&nome, isP=j.vencedor&&j.vencedor!==nome&&nome;
-    const row=document.createElement("div");
-    row.className="time-row"+(isV?" vencedor":"")+(isP?" perdedor":"")+(!nome?" vazio":"");
-
-    const badgeHtml=isV?`<span class="time-badge ${j.penalti===nome?"badge-p":"badge-v"}">${j.penalti===nome?"PEN":"✓"}</span>`:"";
-    const nomeClass="time-nome"+(isP?" perdedor-tx":"");
-
-    row.innerHTML=`
-      <span class="time-flag">${flag(nome)}</span>
-      <span class="${nomeClass}">${nome||"—"}</span>
-      ${badgeHtml}
-      <input class="gols-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2"
-        id="${ti===0?"g1":"g2"}-${fi}-${ji}"
-        value="${gCur}"
-        placeholder="—"
-        ${!nome?"disabled":""}
-        oninput="this.value=this.value.replace(/[^0-9]/g,''); onGolsChange(${fi},${ji},${ti})">`;
-    card.appendChild(row);
-  });
-
-  if(eEmpate&&j.t1&&j.t2){
-    const pen=document.createElement("div");
-    pen.className="pen-row";
-    pen.innerHTML=`
-      <span class="pen-label">🟡 Quem passa nos pênaltis?</span>
-      <button class="pen-btn${j.penalti===j.t1?" ativo":""}"
-        onclick="escolherPenalti(${fi},${ji},'${j.t1.replace(/'/g,"\\'")}')">
-        ${flag(j.t1)} ${j.t1}</button>
-      <button class="pen-btn${j.penalti===j.t2?" ativo":""}"
-        onclick="escolherPenalti(${fi},${ji},'${j.t2.replace(/'/g,"\\'")}')">
-        ${flag(j.t2)} ${j.t2}</button>`;
-    card.appendChild(pen);
-  }
-  return card;
+function iniciarPalpites() {
+  apelidoAtual = document.getElementById("sel-apelido").value;
+  if (!apelidoAtual) return;
+  document.getElementById("header-fase").textContent = FASE_ATUAL;
+  document.getElementById("header-user").textContent = "👤 " + apelidoAtual;
+  document.getElementById("tela-inicio").style.display = "none";
+  document.getElementById("tela-palpites").style.display = "flex";
+  renderJogos();
 }
 
-function renderBracket(){
-  salvarInputs();
-
-  // Preserva qual input estava em foco (e a posição do cursor) antes de recriar o DOM
+// ══════════════════════════════════════════
+//  RENDER — lista de jogos
+// ══════════════════════════════════════════
+function renderJogos() {
+  // Preserva foco antes de recriar DOM
   const ativo = document.activeElement;
-  let focoId = null, cursorPos = null;
-  if(ativo && ativo.classList && ativo.classList.contains("gols-input")){
+  let focoId = null, cursor = null;
+  if (ativo && (ativo.classList.contains("gols-input") || ativo.classList.contains("empate-sel"))) {
     focoId = ativo.id;
-    cursorPos = ativo.selectionStart;
+    cursor = ativo.selectionStart;
   }
 
-  const wrap=document.getElementById("bracket");
-  wrap.innerHTML="";
+  const wrap = document.getElementById("jogos-wrap");
+  wrap.innerHTML = "";
 
-  // Fases normais: colunas alinhadas ao topo
-  FASES.forEach((fase,fi)=>{
-    const col=document.createElement("div");
-    col.className="fase-col";
-    const hdr=document.createElement("div");
-    hdr.className="fase-header";
-    hdr.textContent=fase.label;
-    col.appendChild(hdr);
-    const jogos=document.createElement("div");
-    jogos.className="fase-jogos";
-    state[fi].forEach((_,ji)=>jogos.appendChild(buildCard(fi,ji)));
-    col.appendChild(jogos);
-    wrap.appendChild(col);
+  JOGOS.forEach(j => {
+    const p   = palpites[j.id];
+    const g1n = parseInt(p.g1), g2n = parseInt(p.g2);
+    const temPlacar = p.g1 !== "" && p.g2 !== "" && !isNaN(g1n) && !isNaN(g2n);
+    const eEmpate   = temPlacar && g1n === g2n;
+    const venc      = !temPlacar ? "" : eEmpate ? p.classificado : (g1n > g2n ? j.t1 : j.t2);
+    const completo  = temPlacar && (!eEmpate || p.classificado);
+
+    // Status label
+    let statusTxt = "—", statusCls = "vazio";
+    if (completo)              { statusTxt = `✓ ${venc} classifica`; statusCls = "ok"; }
+    else if (eEmpate)          { statusTxt = "🟡 Quem classifica?";  statusCls = "emp"; }
+
+    const isJogo3 = j.id === 99; // convenção para 3° lugar na fase Final
+    const card = document.createElement("div");
+    card.className = "jogo-card" + (completo ? " ok" : "") + (eEmpate && !p.classificado ? " empate-pendente" : "");
+    card.innerHTML = `
+      <div class="jogo-header">
+        <span class="jogo-num">${isJogo3 ? "🥉 Disputa de 3º Lugar" : "Jogo " + j.id}</span>
+        <span class="jogo-status ${statusCls}">${statusTxt}</span>
+      </div>`;
+
+    // Linha time 1
+    card.appendChild(buildTimeRow(j, 0, venc, p));
+    // Linha time 2
+    card.appendChild(buildTimeRow(j, 1, venc, p));
+
+    // Linha de empate
+    if (eEmpate) {
+      const emp = document.createElement("div");
+      emp.className = "empate-row";
+      emp.innerHTML = `
+        <span class="empate-label">🟡 Pênaltis — quem classificou?</span>
+        <select class="empate-sel" id="cls-${j.id}" onchange="onClassificado(${j.id})">
+          <option value="" ${!p.classificado?"selected":""}>Escolha</option>
+          <option value="${j.t1}" ${p.classificado===j.t1?"selected":""}>${flag(j.t1)} ${j.t1}</option>
+          <option value="${j.t2}" ${p.classificado===j.t2?"selected":""}>${flag(j.t2)} ${j.t2}</option>
+        </select>`;
+      card.appendChild(emp);
+    }
+
+    wrap.appendChild(card);
   });
 
-  // Coluna final + 3º lugar
-  const finalCol=document.createElement("div");
-  finalCol.className="final-col";
-
-  // Seção Final (já renderizado acima como última fase, mas aqui fica só o título+3º)
-  // Como a Final já está na última col de FASES, aqui adicionamos só o 3º lugar
-  // na mesma coluna após a Final — mas FASES[4] já foi renderizado.
-  // Estratégia: removemos a col da Final e a re-renderizamos dentro da final-col
-
-  const finalColRendered = wrap.lastElementChild; // última col = Final
-  wrap.removeChild(finalColRendered);
-
-  const secFinal=document.createElement("div");
-  secFinal.className="final-section";
-  const hFinal=document.createElement("div");
-  hFinal.className="final-header col-final";
-  hFinal.textContent="🏆 Final";
-  secFinal.appendChild(hFinal);
-  const jFinal=document.createElement("div");
-  jFinal.className="fase-jogos";
-  if(state[4]&&state[4][0]) jFinal.appendChild(buildCard(4,0));
-  secFinal.appendChild(jFinal);
-  finalCol.appendChild(secFinal);
-
-  const secTerceiro=document.createElement("div");
-  secTerceiro.className="final-section";
-  const hTerceiro=document.createElement("div");
-  hTerceiro.className="final-header col-terceiro";
-  hTerceiro.textContent="🥉 3º Lugar";
-  secTerceiro.appendChild(hTerceiro);
-  const jTerceiro=document.createElement("div");
-  jTerceiro.className="fase-jogos";
-  if(state[5]&&state[5][0]) jTerceiro.appendChild(buildCard(5,0));
-  secTerceiro.appendChild(jTerceiro);
-  finalCol.appendChild(secTerceiro);
-
-  wrap.appendChild(finalCol);
-
-  // Restaura o foco e a posição do cursor no input que estava sendo digitado
-  if(focoId){
-    const novoEl = document.getElementById(focoId);
-    if(novoEl){
-      novoEl.focus();
-      if(cursorPos !== null) novoEl.setSelectionRange(cursorPos, cursorPos);
+  // Restaura foco
+  if (focoId) {
+    const el = document.getElementById(focoId);
+    if (el) {
+      el.focus();
+      if (cursor !== null && el.setSelectionRange) el.setSelectionRange(cursor, cursor);
     }
   }
+
+  atualizarProgresso();
+}
+
+function buildTimeRow(j, ti, venc, p) {
+  const nome  = ti === 0 ? j.t1 : j.t2;
+  const gVal  = ti === 0 ? p.g1 : p.g2;
+  const golId = (ti === 0 ? "g1" : "g2") + "-" + j.id;
+  const isClass = venc && venc === nome;
+  const isElim  = venc && venc !== nome;
+
+  const row = document.createElement("div");
+  row.className = "time-row";
+  if (isClass) row.style.cssText = "background:var(--venc-bg);border-left:3px solid var(--verde-glow);";
+  if (isElim)  row.style.background = "var(--perd-bg)";
+
+  const badge = isClass
+    ? `<span class="time-badge badge-class">✓ CLASSIF.</span>`
+    : isElim ? `<span class="time-badge badge-elim">ELIM.</span>` : "";
+
+  row.innerHTML = `
+    <span class="time-flag">${flag(nome)}</span>
+    <span class="time-nome${isElim?" dim":""}">${nome}</span>
+    ${badge}
+    <input class="gols-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2"
+      id="${golId}" value="${gVal}" placeholder="—"
+      oninput="this.value=this.value.replace(/[^0-9]/g,''); onGols(${j.id})">`;
+  return row;
+}
+
+// ══════════════════════════════════════════
+//  HANDLERS
+// ══════════════════════════════════════════
+function onGols(jid) {
+  const e1 = document.getElementById(`g1-${jid}`);
+  const e2 = document.getElementById(`g2-${jid}`);
+  if (!e1 || !e2) return;
+  palpites[jid].g1 = e1.value;
+  palpites[jid].g2 = e2.value;
+  // Re-renderiza só quando o placar de AMBOS está preenchido ou AMBOS vazios
+  const g1n = parseInt(e1.value), g2n = parseInt(e2.value);
+  const ambosPreench = e1.value !== "" && e2.value !== "" && !isNaN(g1n) && !isNaN(g2n);
+  const ambosVazios  = e1.value === "" && e2.value === "";
+  if (ambosPreench || ambosVazios) renderJogos();
+  else atualizarProgresso();
+}
+
+function onClassificado(jid) {
+  const el = document.getElementById(`cls-${jid}`);
+  if (el) { palpites[jid].classificado = el.value; renderJogos(); }
 }
 
 // ══════════════════════════════════════════
 //  PROGRESSO
 // ══════════════════════════════════════════
-function atualizarProgresso(){
-  let tot=0,ok=0;
-  for(let f=0;f<=5;f++){
-    if(!state[f]) continue;
-    state[f].forEach(j=>{
-      if(!j||!j.t1||!j.t2) return;
-      tot++;
-      if(j.vencedor&&j.g1!==""&&j.g2!=="") ok++;
-    });
-  }
-  document.getElementById("progress-text").textContent=`${ok} / ${tot}`;
-  document.getElementById("progress-fill").style.width=(tot?Math.round(ok/tot*100):0)+"%";
+function atualizarProgresso() {
+  let ok = 0;
+  JOGOS.forEach(j => {
+    const p   = palpites[j.id];
+    const g1n = parseInt(p.g1), g2n = parseInt(p.g2);
+    const temPlacar = p.g1 !== "" && p.g2 !== "" && !isNaN(g1n) && !isNaN(g2n);
+    const eEmpate   = temPlacar && g1n === g2n;
+    if (temPlacar && (!eEmpate || p.classificado)) ok++;
+  });
+  const tot = JOGOS.length;
+  document.getElementById("progress-txt").textContent  = `${ok} / ${tot}`;
+  document.getElementById("progress-fill").style.width = (tot ? Math.round(ok/tot*100) : 0) + "%";
 }
 
 // ══════════════════════════════════════════
-//  ENVIO
+//  MODAL E ENVIO
 // ══════════════════════════════════════════
-function abrirConfirmacao(){
-  salvarInputs();
-  const inc=[]; const nf=["16-avos","Oitavas","Quartas","Semifinal","Final","3º Lugar"];
-  for(let f=0;f<=5;f++){
-    if(!state[f]) continue;
-    state[f].forEach((j,ji)=>{
-      if(!j||!j.t1||!j.t2) return;
-      if(!j.vencedor) inc.push(`${nf[f]} Jogo ${ji+1}: falta vencedor`);
-      else if(j.g1===""||j.g2==="") inc.push(`${nf[f]} Jogo ${ji+1}: falta placar`);
-    });
-  }
-  let html=`<strong>Participante: ${apelidoAtual}</strong><br><br>`;
-  if(inc.length){
-    html+=`<span style="color:#E74C3C">⚠️ ${inc.length} jogo(s) incompleto(s):</span><br>`;
-    html+=inc.slice(0,8).map(i=>`• ${i}`).join("<br>");
-    if(inc.length>8) html+=`<br>• ... e mais ${inc.length-8}`;
-    html+=`<br><br><em>Você pode enviar assim mesmo — esses jogos não pontuarão.</em>`;
+function abrirModal() {
+  const inc = [];
+  JOGOS.forEach(j => {
+    const p   = palpites[j.id];
+    const g1n = parseInt(p.g1), g2n = parseInt(p.g2);
+    const temPlacar = p.g1 !== "" && p.g2 !== "" && !isNaN(g1n) && !isNaN(g2n);
+    const eEmpate   = temPlacar && g1n === g2n;
+    if (!temPlacar)                inc.push(`Jogo ${j.id} (${j.t1} × ${j.t2}): falta o placar`);
+    else if (eEmpate && !p.classificado) inc.push(`Jogo ${j.id} (${j.t1} × ${j.t2}): indique o classificado nos pênaltis`);
+  });
+  let html = `<strong>${apelidoAtual}</strong> — <strong>${FASE_ATUAL}</strong><br><br>`;
+  if (inc.length) {
+    html += `<span style="color:#E74C3C">⚠️ ${inc.length} jogo(s) incompleto(s):</span><br>`;
+    html += inc.slice(0,8).map(i=>`• ${i}`).join("<br>");
+    if (inc.length > 8) html += `<br>• ... e mais ${inc.length-8}`;
+    html += `<br><br><em>Você pode enviar assim mesmo — jogos incompletos não pontuarão.</em>`;
   } else {
-    html+=`✅ Todos os ${document.getElementById("progress-text").textContent} preenchidos!`;
+    html += `✅ Todos os ${JOGOS.length} jogos preenchidos. Pronto!`;
   }
-  document.getElementById("modal-body").innerHTML=html;
+  document.getElementById("modal-body").innerHTML = html;
   document.getElementById("overlay").classList.add("show");
 }
 
-function fecharModal(){ document.getElementById("overlay").classList.remove("show"); }
+function fecharModal() { document.getElementById("overlay").classList.remove("show"); }
 
-async function enviarPalpites(){
-  fecharModal(); salvarInputs();
-  const btn=document.getElementById("btn-enviar");
-  btn.disabled=true; btn.textContent="Enviando...";
-  mostrarToast("⏳ Enviando...","");
+async function enviar() {
+  fecharModal();
+  const btn = document.getElementById("btn-enviar");
+  btn.disabled = true; btn.textContent = "Enviando...";
+  mostrarToast("⏳ Enviando...", "");
 
-  const nf=["16-avos","Oitavas","Quartas","Semifinal","Final","3º Lugar"];
-  const fases=[];
-  for(let f=0;f<=5;f++){
-    if(!state[f]) continue;
-    state[f].forEach((j,ji)=>{
-      if(!j||!j.t1||!j.t2) return;
-      fases.push({fase:nf[f],jogo:ji+1,time1:j.t1,time2:j.t2,
-        vencedor:j.vencedor||"",penalti:j.penalti||"",gols1:j.g1,gols2:j.g2});
+  const jogosPayload = JOGOS.map(j => {
+    const p   = palpites[j.id];
+    const g1n = parseInt(p.g1), g2n = parseInt(p.g2);
+    const temPlacar = p.g1 !== "" && p.g2 !== "" && !isNaN(g1n) && !isNaN(g2n);
+    const eEmpate   = temPlacar && g1n === g2n;
+    const classificado = temPlacar
+      ? (eEmpate ? p.classificado : (g1n > g2n ? j.t1 : j.t2))
+      : "";
+    return { id:j.id, t1:j.t1, t2:j.t2, g1:p.g1, g2:p.g2, classificado };
+  });
+
+  try {
+    const res = await fetch(APPS_SCRIPT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain" },
+      body: JSON.stringify({
+        apelido: apelidoAtual,
+        fase:    FASE_ATUAL,
+        timestamp: new Date().toISOString(),
+        jogos:   jogosPayload,
+      }),
     });
-  }
-
-  try{
-    const res=await fetch(APPS_SCRIPT_URL,{method:"POST",headers:{"Content-Type":"text/plain"},
-      body:JSON.stringify({apelido:apelidoAtual,timestamp:new Date().toISOString(),fases})});
-    const txt=await res.text();
-    if(!txt.includes("OK")) throw new Error(txt);
-
-    document.getElementById("tela-bracket").style.display="none";
-    document.getElementById("tela-sucesso").style.display="flex";
-    document.getElementById("sucesso-sub").textContent=
-      `Palpite de ${apelidoAtual} registrado com sucesso. Baixe a imagem para guardar ou compartilhar!`;
-    // 🔴 ADICIONE ESTA LINHA PARA ESCONDER A AMPULHETA
-    document.getElementById("toast").classList.remove("show");
-
-    gerarCanvas();
-  }catch(err){
-    mostrarToast("❌ Erro ao enviar. Tente novamente.","erro");
-    btn.disabled=false; btn.textContent="Enviar →";
+    const txt = await res.text();
+    if (!txt.includes("OK")) throw new Error(txt);
+    document.getElementById("tela-palpites").style.display = "none";
+    document.getElementById("tela-sucesso").style.display  = "flex";
+    document.getElementById("suc-sub").textContent =
+      `Palpite de ${apelidoAtual} para ${FASE_ATUAL} registrado com sucesso! Boa sorte!`;
+  } catch(err) {
+    mostrarToast("❌ Erro ao enviar. Verifique sua conexão e tente novamente.", "erro");
+    btn.disabled = false; btn.textContent = "Enviar →";
     console.error(err);
   }
-}
-
-// ══════════════════════════════════════════
-//  CANVAS — layout equidistante para imagem
-// ══════════════════════════════════════════
-function gerarCanvas(){
-  const canvas=document.getElementById("canvas-preview");
-  const CARD_W=185, CARD_H=48, PAD=20, COL_GAP=40, HEADER_H=50;
-  // 5 fases normais + coluna final/3º
-  const COLS=6;
-  const ROWS=16; // número de slots na fase maior
-  const slotH=(CARD_H+8);
-  const AREA_H=ROWS*slotH;
-  const W=COLS*(CARD_W+COL_GAP)+PAD*2;
-  const H=AREA_H+HEADER_H+PAD;
-  canvas.width=W; canvas.height=H;
-  const ctx=canvas.getContext("2d");
-
-  // Fundo
-  ctx.fillStyle="#0E1016"; ctx.fillRect(0,0,W,H);
-
-  // Título
-  ctx.fillStyle="#F9E547"; ctx.font="bold 14px -apple-system,sans-serif";
-  ctx.fillText(`⚽  Copa do Mundo 2026 — Mata-Mata   |   ${apelidoAtual}`,PAD,22);
-  ctx.fillStyle="#2A2F48"; ctx.fillRect(0,30,W,1);
-
-  // Fases para o canvas: 16-avos, Oitavas, Quartas, Semifinal, Final, (3º Lugar na mesma col)
-  const fasesCanvas=[
-    {label:"16-avos",   fi:0, n:16},
-    {label:"Oitavas",   fi:1, n:8 },
-    {label:"Quartas",   fi:2, n:4 },
-    {label:"Semifinal", fi:3, n:2 },
-    {label:"Final",     fi:4, n:1 },
-  ];
-
-  fasesCanvas.forEach(({label,fi,n},ci)=>{
-    const x=PAD+ci*(CARD_W+COL_GAP);
-
-    // Header
-    ctx.fillStyle="#F9E547"; ctx.font="bold 9px sans-serif";
-    ctx.fillText(label,x,HEADER_H-10);
-
-    const jogos=state[fi]||[];
-    const slotsPerJogo=ROWS/n; // quantos slots de altura cada jogo ocupa
-
-    jogos.forEach((j,ji)=>{
-      if(!j||!j.t1||!j.t2) return;
-      // Centro vertical equidistante
-      const yCenter=HEADER_H+(slotsPerJogo*(ji+0.5))*slotH;
-      const y=yCenter-CARD_H/2;
-      desenharCard(ctx,j,x,y,CARD_W,CARD_H);
-    });
-  });
-
-  // Coluna Final+3º: mesma posição X da Final mas 3º abaixo
-  const xFinalCol=PAD+4*(CARD_W+COL_GAP);
-
-  // Final já desenhada acima — desenhar 3º lugar abaixo do centro
-  const j3=state[5]&&state[5][0];
-  if(j3&&j3.t1&&j3.t2){
-    // Título 3º lugar
-    ctx.fillStyle="#7A8090"; ctx.font="bold 9px sans-serif";
-    ctx.fillText("3º Lugar",xFinalCol,HEADER_H+CARD_H+32);
-    const y3=HEADER_H+CARD_H+40;
-    desenharCard(ctx,j3,xFinalCol,y3,CARD_W,CARD_H);
-  }
-}
-
-function desenharCard(ctx,j,x,y,W,H){
-  // Fundo
-  ctx.fillStyle=j.vencedor?"#0A2E1A":"#181C28";
-  rr(ctx,x,y,W,H,5); ctx.fill();
-  ctx.strokeStyle=j.vencedor?"#1A6B3C":"#2A2F48";
-  ctx.lineWidth=1; rr(ctx,x+.5,y+.5,W-1,H-1,5); ctx.stroke();
-
-  const halfH=H/2;
-  // Linha divisória
-  ctx.strokeStyle="#2A2F48"; ctx.lineWidth=.5;
-  ctx.beginPath(); ctx.moveTo(x,y+halfH); ctx.lineTo(x+W,y+halfH); ctx.stroke();
-
-  [0,1].forEach(ti=>{
-    const nome=ti===0?j.t1:j.t2;
-    const gols=ti===0?j.g1:j.g2;
-    const isV=j.vencedor===nome;
-    const ty=y+(ti===0?halfH*0.6:halfH*1.6);
-
-    // Flag
-    ctx.font="11px sans-serif";
-    ctx.fillText(FLAGS[nome]||"",x+5,ty);
-
-    // Nome
-    ctx.fillStyle=isV?"#2ECC71":j.vencedor?"#353550":"#C8CAD8";
-    ctx.font=(isV?"bold ":"")+"9px -apple-system,sans-serif";
-    // Truncar nome longo
-    let nm=nome; ctx.save();
-    ctx.rect(x+22,y+(ti===0?0:halfH),W-55,halfH); ctx.clip();
-    ctx.fillText(nm,x+22,ty); ctx.restore();
-
-    // Gols
-    if(gols!==""){
-      ctx.fillStyle="#F9E547"; ctx.font="bold 10px monospace";
-      ctx.textAlign="right"; ctx.fillText(gols,x+W-5,ty); ctx.textAlign="left";
-    }
-  });
-}
-
-function rr(ctx,x,y,w,h,r){
-  ctx.beginPath(); ctx.moveTo(x+r,y);
-  ctx.lineTo(x+w-r,y); ctx.arcTo(x+w,y,x+w,y+r,r);
-  ctx.lineTo(x+w,y+h-r); ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
-  ctx.lineTo(x+r,y+h); ctx.arcTo(x,y+h,x,y+h-r,r);
-  ctx.lineTo(x,y+r); ctx.arcTo(x,y,x+r,y,r);
-  ctx.closePath();
-}
-
-function baixarImagem(){
-  const canvas=document.getElementById("canvas-preview");
-  const a=document.createElement("a");
-  a.download=`bolao-copa2026-${apelidoAtual.replace(/\s+/g,"-")}.png`;
-  a.href=canvas.toDataURL("image/png");
-  a.click();
 }
 
 // ══════════════════════════════════════════
 //  TOAST
 // ══════════════════════════════════════════
 let _tt;
-function mostrarToast(msg,tipo){
-  const el=document.getElementById("toast");
-  el.textContent=msg; el.className="toast show"+(tipo?" "+tipo:"");
+function mostrarToast(msg, tipo) {
+  const el = document.getElementById("toast");
+  el.textContent = msg; el.className = "toast show" + (tipo ? " " + tipo : "");
   clearTimeout(_tt);
-  if(tipo) _tt=setTimeout(()=>el.classList.remove("show"),4000);
+  if (tipo) _tt = setTimeout(() => el.classList.remove("show"), 4000);
 }
 
 // INIT
-renderPtsGrid();
 carregarParticipantes();
 </script>
 </body>
